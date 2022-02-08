@@ -19,15 +19,15 @@ class UploadController {
 					// Creates a client
 					const storage = new Storage();
 
-					// const x = await storage.bucket(bucketName).upload(filePath, {
-					// 	destination: destFileName,
-					// });
+					const x = await storage.bucket(bucketName).upload(filePath, {
+						destination: destFileName,
+					});
 
 					response.json({
 						"success": true,
 						"event": "UPLOAD_FILE",
 						"message": "file uploaded successfully",
-						"data": {}
+						"data": x
 					});
 				} catch (error) {
 					console.log(error);
