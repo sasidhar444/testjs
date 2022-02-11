@@ -33,13 +33,18 @@ class UploadController {
 					console.log(error);
 					response.status(500).send({error: error.message})
 				} finally {
-					try {
-						if (fs.existsSync(filePath)) {
-							fs.unlinkSync(filePath)
-						}
-					} catch (err) {
-						console.log(err)
+					
+					if (fs.existsSync(filePath)) {
+						fs.unlink(filePath, (err) => {
+							if (err) {
+							  console.error(err)
+							  return
+							}
+						  
+							//file removed
+						  })
 					}
+
 				}
 			});
 	}
